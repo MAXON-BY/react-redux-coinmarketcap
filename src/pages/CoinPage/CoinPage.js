@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -19,36 +19,111 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(rank, name, capital, price, summ, total, change) {
-    return {rank, name, capital, price, summ, total, change};
-}
-
-const rows = [
-    createData(1, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(2, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(3, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(4, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(5, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(6, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(7, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(8, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(9, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(10, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(11, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(12, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(13, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(14, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(15, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(16, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(17, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(18, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(19, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
-    createData(20, 'Bitcoin', 13473652006867, 730522, 1690308444729, '18443875 BTC', '2.77%'),
+const coins = [
+    {
+        rank: 1,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 2,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 3,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 4,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 5,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 6,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 7,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 8,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 9,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
+    {
+        rank: 10,
+        name: 'Bitcoin',
+        capital: 13473652006867,
+        price: 730522,
+        summ: 1690308444729,
+        total: 18443875,
+        change: 2.77
+    },
 ];
 
 const CoinPage = () => {
 
-    const [expand, setExpand] = React.useState(true);
+    const [expand, setExpand] = useState(true);
+    const tableCoin = [
+        'Rank',
+        'Наименование',
+        'Рыночная капитализация',
+        'Цена',
+        'Объем (за 24 часа)',
+        'Циркулирующее предложение',
+        'Изменение (за 24 часа)'
+    ]
 
     const handleClickExpand = () => {
         setExpand(!expand)
@@ -71,62 +146,27 @@ const CoinPage = () => {
                     <Table className={classes.table} aria-label="a dense table">
                         <TableHead>
                             <TableRow>
-                                <TableCell onClick={handleClickExpand}>
-                                    Rank
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Наименование
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Рыночная капитализация
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Цена
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Объем (за 24 часа)
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Циркулирующее предложение
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
-                                <TableCell align="right" onClick={handleClickExpand}>
-                                    Изменение (за 24 часа)
-                                    <IconButton aria-label="expand row" size="small">
-                                        {expand ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                </TableCell>
+                                {tableCoin.map(coin => (
+                                    <TableCell align={"right"} onClick={handleClickExpand}>
+                                        {coin}
+                                        <IconButton aria-label="expand row" size="small">
+                                            {expand ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                                        </IconButton>
+                                    </TableCell>
+                                ))}
+
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.name}>
-                                    <TableCell component="th" scope="row">
-                                        {row.rank}
-                                    </TableCell>
-                                    <TableCell align="right">{row.name}</TableCell>
-                                    <TableCell align="right">{row.capital}</TableCell>
-                                    <TableCell align="right">{row.price}</TableCell>
-                                    <TableCell align="right">{row.summ}</TableCell>
-                                    <TableCell align="right">{row.total}</TableCell>
-                                    <TableCell align="right">{row.change}</TableCell>
+                            {coins.map(({rank, name, capital, price, summ, total, change}) => (
+                                <TableRow key={rank}>
+                                    <TableCell component="th" scope="row">{rank}</TableCell>
+                                    <TableCell align="right">{name}</TableCell>
+                                    <TableCell align="right">{capital}</TableCell>
+                                    <TableCell align="right">{price}</TableCell>
+                                    <TableCell align="right">{summ}</TableCell>
+                                    <TableCell align="right">{total}</TableCell>
+                                    <TableCell align="right">{change}%</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

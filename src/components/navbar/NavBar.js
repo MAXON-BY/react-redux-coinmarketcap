@@ -1,5 +1,5 @@
-import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import React, {useState} from 'react';
+import {fade, makeStyles} from '@material-ui/core/styles';
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -21,12 +21,6 @@ import Divider from "@material-ui/core/Divider";
 import ListSubheader from "@material-ui/core/ListSubheader";
 
 const useStyles = makeStyles((theme) => ({
-    logoimg: {
-      display: "block"
-    },
-    root: {
-        flexGrow: 1,
-    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
@@ -65,7 +59,6 @@ const useStyles = makeStyles((theme) => ({
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
-        // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
         width: '100%',
@@ -93,20 +86,20 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
     const classes = useStyles();
 
-    const [anchorEl, setAnchorEl] = React.useState(null)
-    const [state, setState] = React.useState({
-        left: false
-    });
+    const [anchorEl, setAnchorEl] = useState(null)
+    const [state, setState] = useState({left: false});
+
+    const open = Boolean(anchorEl);
+    const sidebarPosition = 'left'
+    const navbarNav = ['Криптовалюты', 'Биржи', 'Products', 'Инструменты', 'Learn']
 
     const toggleDrawer = (anchor = 'left', open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
             return;
         }
 
-        setState({ ...state, [anchor]: open });
+        setState({...state, [anchor]: open});
     };
-
-    const open = Boolean(anchorEl);
 
     const handleMenu = (event) => {
         setAnchorEl(event.currentTarget);
@@ -116,7 +109,8 @@ const NavBar = () => {
         setAnchorEl(null);
     };
 
-    const list = (anchor) => (
+
+    const list = () => (
         <div
             role="presentation"
         >
@@ -130,13 +124,13 @@ const NavBar = () => {
                 }
                 className={classes.list}
             >
-                <Divider />
-                {['Криптовалюты', 'Биржи', 'Products', 'Инструменты', 'Learn'].map((text, index) => (
-                    <ListItem button key={text} onClick={toggleDrawer(anchor, false)}>
+                <Divider/>
+                {navbarNav.map((text) => (
+                    <ListItem button key={text} onClick={toggleDrawer(sidebarPosition, false)}>
                         <ListItemIcon>
                             <ClearAllIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={text} />
+                        <ListItemText primary={text}/>
                     </ListItem>
                 ))}
             </List>
@@ -144,32 +138,31 @@ const NavBar = () => {
     );
 
     return (
-        <div className={classes.root}>
+        <div className="navbar">
             <AppBar position="static">
                 <Toolbar>
-                    {['left'].map((anchor) => (
-                        <React.Fragment>
-                            <IconButton
-                                edge="start"
-                                className={classes.menuButton}
-                                color="inherit"
-                                aria-label="open drawer"
-                                onClick={toggleDrawer('left', true)}
-                            >
-                                <MenuIcon />
-                            </IconButton>
-                            <Drawer open={state['left']} onClose={toggleDrawer('left', false)}>
-                                {list('left')}
-                            </Drawer>
-                        </React.Fragment>
-                    ))}
+                    <>
+                        <IconButton
+                            edge="start"
+                            className={classes.menuButton}
+                            color="inherit"
+                            aria-label="open drawer"
+                            onClick={toggleDrawer(sidebarPosition, true)}
+                        >
+                            <MenuIcon/>
+                        </IconButton>
+                        <Drawer open={state[sidebarPosition]} onClose={toggleDrawer(sidebarPosition, false)}>
+                            {list()}
+                        </Drawer>
+                    </>
                     <Typography className={classes.title} noWrap>
-                            <img className={classes.logoimg} src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?_=e73cacf"
-                                 alt="logo"/>
+                        <img className="logoimg"
+                             src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?_=e73cacf"
+                             alt="logo"/>
                     </Typography>
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
-                            <SearchIcon />
+                            <SearchIcon/>
                         </div>
                         <InputBase
                             placeholder="Search coin…"
@@ -177,7 +170,7 @@ const NavBar = () => {
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
                             }}
-                            inputProps={{ 'aria-label': 'search' }}
+                            inputProps={{'aria-label': 'search'}}
                         />
                     </div>
 
@@ -189,7 +182,7 @@ const NavBar = () => {
                             onClick={handleMenu}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <AccountCircle/>
                         </IconButton>
                         <Menu
                             id="menu-appbar"

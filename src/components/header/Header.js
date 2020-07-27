@@ -1,5 +1,5 @@
 import React from 'react';
-import Top from "../top/Top";
+import Top from "./top/Top";
 import NavBar from "../navbar/NavBar";
 
 const Header = () => {
