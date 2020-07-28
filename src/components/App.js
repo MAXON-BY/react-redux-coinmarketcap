@@ -2,8 +2,8 @@ import React from 'react';
 import Header from "./header/Header";
 import CoinPage from "../pages/CoinPage/CoinPage";
 import FooterComp from "./footer/Footer";
-import Switch from "@material-ui/core/Switch";
-import Route from "react-router-dom/es/Route";
+
+import {Switch, Route} from "react-router-dom";
 import CoinItemPage from "../pages/CoinItemPage/CoinItemPage";
 import ExchangesPage from "../pages/ExchangesPage/ExchangesPage";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
