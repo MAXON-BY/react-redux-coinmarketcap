@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -12,6 +12,8 @@ import IconButton from "@material-ui/core/IconButton";
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import {useSelector} from "react-redux";
+import * as axios from "axios";
 
 const useStyles = makeStyles({
     table: {
@@ -19,102 +21,26 @@ const useStyles = makeStyles({
     },
 });
 
-const coins = [
-    {
-        rank: 1,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 2,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 3,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 4,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 5,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 6,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 7,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 8,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 9,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-    {
-        rank: 10,
-        name: 'Bitcoin',
-        capital: 13473652006867,
-        price: 730522,
-        summ: 1690308444729,
-        total: 18443875,
-        change: 2.77
-    },
-];
+const URL = "https://api.coingecko.com/api/v3";
+export const MONEY = "usd";
+export const SORT = "market_cap_desc";
 
 const CoinPage = () => {
 
+
+    const {coins} = useSelector(state => state.coins)
+
     const [expand, setExpand] = useState(true);
+
+    useEffect(async () => {
+        const result = await axios(
+            `${URL}/coins/markets?vs_currency=${MONEY}&order=${SORT}&per_page=30&page=1&sparkline=true&price_change_percentage=1h`,
+        );
+
+        setExpand(result.data);
+        console.log('data', result.data)
+    });
+
     const tableCoin = [
         'Rank',
         'Наименование',
@@ -147,7 +73,7 @@ const CoinPage = () => {
                         <TableHead>
                             <TableRow>
                                 {tableCoin.map(coin => (
-                                    <TableCell align={"right"} onClick={handleClickExpand}>
+                                    <TableCell key={coin} align={"right"} onClick={handleClickExpand}>
                                         {coin}
                                         <IconButton aria-label="expand row" size="small">
                                             {expand ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
