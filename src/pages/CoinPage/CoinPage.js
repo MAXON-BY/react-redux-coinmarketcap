@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import Container from "@material-ui/core/Container";
 import TableContainer from "@material-ui/core/TableContainer";
 import Table from "@material-ui/core/Table";
@@ -12,41 +11,35 @@ import IconButton from "@material-ui/core/IconButton";
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as axios from "axios";
-
-const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
-});
-
-const URL = "https://api.coingecko.com/api/v3";
-export const MONEY = "usd";
-export const SORT = "market_cap_desc";
+import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../utils/api/apiConstants";
+import {fetchCoin} from "../../redux/actions/coinAction";
 
 const CoinPage = () => {
 
-
     const {coins} = useSelector(state => state.coins)
+    const dispatch = useDispatch()
 
     const [expand, setExpand] = useState(true);
 
-    useEffect(async () => {
-        const result = await axios(
-            `${URL}/coins/markets?vs_currency=${MONEY}&order=${SORT}&per_page=30&page=1&sparkline=true&price_change_percentage=1h`,
-        );
+    useEffect(() => {
+        const fetchCoins = async () => {
+            const result = await axios(
+                `${URL}/coins/markets?vs_currency=${MONEY}&order=${SORT}&per_page=${PER_PAGE}&page=${PAGE}&sparkline=true&price_change_percentage=${PRICE_TIME}`,
+            );
 
-        setExpand(result.data);
-        console.log('data', result.data)
-    });
+            dispatch(fetchCoin(result.data));
+        };
+
+        fetchCoins();
+    }, [coins, dispatch]);
 
     const tableCoin = [
         'Rank',
         'Наименование',
         'Рыночная капитализация',
         'Цена',
-        'Объем (за 24 часа)',
         'Циркулирующее предложение',
         'Изменение (за 24 часа)'
     ]
@@ -56,7 +49,6 @@ const CoinPage = () => {
         console.log('сортировка таблицы', expand)
     };
 
-    const classes = useStyles();
     return (
         <Container maxWidth="lg">
             <div>
@@ -69,12 +61,12 @@ const CoinPage = () => {
                 </div>
 
                 <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="a dense table">
+                    <Table className="tableCoin" aria-label="coins table">
                         <TableHead>
                             <TableRow>
-                                {tableCoin.map(coin => (
-                                    <TableCell key={coin} align={"right"} onClick={handleClickExpand}>
-                                        {coin}
+                                {tableCoin.map(table => (
+                                    <TableCell key={table} align={"right"} onClick={handleClickExpand}>
+                                        {table}
                                         <IconButton aria-label="expand row" size="small">
                                             {expand ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
                                         </IconButton>
@@ -84,15 +76,30 @@ const CoinPage = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {coins.map(({rank, name, capital, price, summ, total, change}) => (
-                                <TableRow key={rank}>
-                                    <TableCell component="th" scope="row">{rank}</TableCell>
-                                    <TableCell align="right">{name}</TableCell>
-                                    <TableCell align="right">{capital}</TableCell>
-                                    <TableCell align="right">{price}</TableCell>
-                                    <TableCell align="right">{summ}</TableCell>
-                                    <TableCell align="right">{total}</TableCell>
-                                    <TableCell align="right">{change}%</TableCell>
+                            {coins.map((
+                                {
+                                    id,
+                                    name,
+                                    image,
+                                    market_cap_rank,
+                                    market_cap,
+                                    current_price,
+                                    circulating_supply,
+                                    price_change_percentage_24h
+                                }
+                            ) => (
+                                <TableRow key={id}>
+                                    <TableCell component="th" scope="row">{market_cap_rank}</TableCell>
+                                    <TableCell align="right">
+                                        <div className="tableCoinWrap">
+                                            <img className="coinLogo" src={image} alt={id}/>
+                                            {name}
+                                        </div>
+                                    </TableCell>
+                                    <TableCell align="right">{market_cap}</TableCell>
+                                    <TableCell align="right">{current_price}</TableCell>
+                                    <TableCell align="right">{circulating_supply}</TableCell>
+                                    <TableCell align="right">{price_change_percentage_24h}%</TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

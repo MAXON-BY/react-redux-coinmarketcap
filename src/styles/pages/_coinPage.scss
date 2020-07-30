@@ -1,0 +1,20 @@
+.coinLogo{
+  width: 16px;
+  height: auto;
+  display: block;
+  margin-right: 5px;
+}
+
+.tableCoinWrap{
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.MuiTableCell-alignRight {
+  white-space: nowrap;
+}
+
+.tableCoin{
+  min-width: 650px
+}
