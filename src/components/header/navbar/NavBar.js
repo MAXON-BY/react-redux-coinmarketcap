@@ -6,6 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import BtnAccount from "../btnAccount/BtnAccount";
 import SearchForm from "../searchForm/SearchForm";
 import Sidebar from "../sidebar/Sidebar";
+import LogoHeader from '../../../common/images/logo-header.svg'
 
 const useStyles = makeStyles((theme) => ({
     title: {
@@ -29,7 +30,7 @@ const NavBar = () => {
 
                     <Typography className={classes.title} noWrap>
                         <img className="logoimg"
-                             src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg?_=e73cacf"
+                             src={LogoHeader}
                              alt="logo"/>
                     </Typography>
 

@@ -1,10 +1,11 @@
 import React from 'react';
+import LogoFooter from '../../common/images/logo-footer.svg'
 
 const Footer = () => {
     return (
         <div className="footer">
             <div className="logo-footer">
-                <img src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_grey_1.svg?_=e73cacf"
+                <img src={LogoFooter}
                      alt="logo"/>
                 <div className="author">© 2020 CoinMarketCap by Max Nyrkov</div>
             </div>
