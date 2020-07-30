@@ -13,8 +13,17 @@ import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useDispatch, useSelector} from "react-redux";
 import * as axios from "axios";
-import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../utils/api/apiConstants";
+import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../helpers/constants/fetch";
 import {fetchCoin} from "../../redux/actions/coinAction";
+
+const tableCoin = [
+    'Rank',
+    'Наименование',
+    'Рыночная капитализация',
+    'Цена',
+    'Циркулирующее предложение',
+    'Изменение (за 24 часа)'
+]
 
 const CoinPage = () => {
 
@@ -33,16 +42,7 @@ const CoinPage = () => {
         };
 
         fetchCoins();
-    }, [coins, dispatch]);
-
-    const tableCoin = [
-        'Rank',
-        'Наименование',
-        'Рыночная капитализация',
-        'Цена',
-        'Циркулирующее предложение',
-        'Изменение (за 24 часа)'
-    ]
+    }, [dispatch]);
 
     const handleClickExpand = () => {
         setExpand(!expand)

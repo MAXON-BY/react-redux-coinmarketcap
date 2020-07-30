@@ -9,8 +9,9 @@ import ExchangesPage from "../pages/ExchangesPage/ExchangesPage";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
 import ToolsPage from "../pages/ToolsPage/ToolsPage";
 import LearnPage from "../pages/LearnPage/LearnPage";
+import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
 
-function App() {
+const App = () => {
     return (
         <div className="App">
             <Header/>
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/products" exact component={ProductsPage}/>
                 <Route path="/tools" exact component={ToolsPage}/>
                 <Route path="/learn" exact component={LearnPage}/>
+                <Route path="*" component={NotFoundPage}/>
             </Switch>
 
             <FooterComp/>

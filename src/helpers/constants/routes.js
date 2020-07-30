@@ -1,0 +1,5 @@
+// export const COIN = 'coin'
+// export const EXCHANGE = 'exchange'
+// export const PRODUCTS = 'products'
+// export const TOOLS = 'tools'
+// export const LEARN = 'learn'
