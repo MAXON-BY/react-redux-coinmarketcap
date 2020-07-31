@@ -6,34 +6,42 @@ import ToolsPage from "../../pages/ToolsPage/ToolsPage";
 import LearnPage from "../../pages/LearnPage/LearnPage";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
+export const HOME_PAGE = '/'
+export const COIN_ID_PAGE = "/coin/:id"
+export const EXCHANGE_PAGE= "/exchange"
+export const PRODUCTS_PAGE= "/products"
+export const TOOLS_PAGE= "/tools"
+export const LEARN_PAGE= "/learn"
+export const NOT_FOUND_PAGE = "*"
+
 export const routes = [
     {
-        path: "/",
+        path: HOME_PAGE,
         exact: true,
         component: CoinPage
     },
     {
-        path: "/coin/:id",
+        path: COIN_ID_PAGE,
         component: CoinItemPage,
     },
     {
-        path: "/exchange",
+        path: EXCHANGE_PAGE,
         component: ExchangesPage,
     },
     {
-        path: "/products",
+        path: PRODUCTS_PAGE,
         component: ProductsPage,
     },
     {
-        path: "/tools",
+        path: TOOLS_PAGE,
         component: ToolsPage,
     },
     {
-        path: "/learn",
+        path: LEARN_PAGE,
         component: LearnPage,
     },
     {
-        path: "*",
+        path: NOT_FOUND_PAGE,
         component: NotFoundPage,
     }
 ];

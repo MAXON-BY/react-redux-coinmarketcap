@@ -10,15 +10,16 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ClearAllIcon from "@material-ui/icons/ClearAll";
 import ListItemText from "@material-ui/core/ListItemText";
 import {Link} from "react-router-dom";
+import {EXCHANGE_PAGE, HOME_PAGE, LEARN_PAGE, PRODUCTS_PAGE, TOOLS_PAGE} from "../../../helpers/constants/routes";
 
 const sidebarPosition = 'left'
 
 export const navbarNav = [
-    {name:'Криптовалюты', link: '/'},
-    {name:'Биржи', link: '/exchange'},
-    {name:'Products', link: '/products'},
-    {name:'Инструменты', link: '/tools'},
-    {name:'Learn', link: '/learn'},
+    {name:'Криптовалюты', link: HOME_PAGE},
+    {name:'Биржи', link: EXCHANGE_PAGE},
+    {name:'Products', link: PRODUCTS_PAGE},
+    {name:'Инструменты', link: TOOLS_PAGE},
+    {name:'Learn', link: LEARN_PAGE},
 ]
 
 const Sidebar = () => {
