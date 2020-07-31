@@ -1,5 +1,5 @@
 import React from 'react';
-import LogoHeader from "../../../common/images/logo-header.svg";
+import LogoHeader from "../../../common/images/logoHeader.svg";
 import Typography from "@material-ui/core/Typography";
 
 const Logo = () => {
