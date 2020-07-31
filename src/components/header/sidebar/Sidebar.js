@@ -9,14 +9,17 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ClearAllIcon from "@material-ui/icons/ClearAll";
 import ListItemText from "@material-ui/core/ListItemText";
+import {Link} from "react-router-dom";
 
 const sidebarPosition = 'left'
-const navbarNav = [
-    'Криптовалюты',
-    'Биржи',
-    'Products',
-    'Инструменты',
-    'Learn']
+
+export const navbarNav = [
+    {name:'Криптовалюты', link: '/'},
+    {name:'Биржи', link: '/exchange'},
+    {name:'Products', link: '/products'},
+    {name:'Инструменты', link: '/tools'},
+    {name:'Learn', link: '/learn'},
+]
 
 const Sidebar = () => {
 
@@ -43,12 +46,14 @@ const Sidebar = () => {
                 className="makeStyles-list"
             >
                 <Divider/>
-                {navbarNav.map((text) => (
-                    <ListItem button key={text} onClick={toggleDrawer(sidebarPosition, false)}>
+                {navbarNav.map(({name, link}) => (
+                    <ListItem button key={name} onClick={toggleDrawer(sidebarPosition, false)}>
                         <ListItemIcon>
                             <ClearAllIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={text}/>
+                        <Link to={link}>
+                            <ListItemText primary={name}/>
+                        </Link>
                     </ListItem>
                 ))}
             </List>
