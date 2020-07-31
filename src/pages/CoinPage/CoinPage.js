@@ -15,6 +15,7 @@ import {useDispatch, useSelector} from "react-redux";
 import * as axios from "axios";
 import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../helpers/constants/fetch";
 import {fetchCoinAction} from "../../redux/actions/coinAction";
+import TablePag from "../../components/tablePag/TablePag";
 
 const tableCoin = [
     'Rank',
@@ -49,6 +50,8 @@ const CoinPage = () => {
         console.log('сортировка таблицы', expand)
     };
 
+
+
     return (
         <Container maxWidth="lg">
             <div>
@@ -56,10 +59,6 @@ const CoinPage = () => {
             </div>
 
             <div className="coin-block-wrap">
-                <div className="coin-block-nav">
-
-                </div>
-
                 <TableContainer component={Paper}>
                     <Table className="tableCoin" aria-label="coins table">
                         <TableHead>
@@ -105,6 +104,7 @@ const CoinPage = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <TablePag/>
             </div>
         </Container>
 
