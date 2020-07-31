@@ -1,8 +1,10 @@
 import {combineReducers} from "redux";
-import coins from "./coinReduser";
+import coins from "./coinReducer";
+import info from "./infoReducer";
 
 const rootReducer = combineReducers({
-    coins
+    coins,
+    info
 })
 
 export default rootReducer

@@ -5,7 +5,7 @@ const initialState = {
     isLoading: false
 }
 
-const coins = (state = initialState, action) => {
+const coinsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_COIN:
             return{
@@ -16,4 +16,4 @@ const coins = (state = initialState, action) => {
     }
 }
 
-export default coins
+export default coinsReducer

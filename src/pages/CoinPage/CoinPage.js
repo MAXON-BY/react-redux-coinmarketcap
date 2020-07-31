@@ -14,7 +14,7 @@ import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useDispatch, useSelector} from "react-redux";
 import * as axios from "axios";
 import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../helpers/constants/fetch";
-import {fetchCoin} from "../../redux/actions/coinAction";
+import {fetchCoinAction} from "../../redux/actions/coinAction";
 
 const tableCoin = [
     'Rank',
@@ -38,7 +38,7 @@ const CoinPage = () => {
                 `${URL}/coins/markets?vs_currency=${MONEY}&order=${SORT}&per_page=${PER_PAGE}&page=${PAGE}&sparkline=true&price_change_percentage=${PRICE_TIME}`,
             );
 
-            dispatch(fetchCoin(result.data));
+            dispatch(fetchCoinAction(result.data));
         };
 
         fetchCoins();

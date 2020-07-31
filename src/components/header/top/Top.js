@@ -1,15 +1,33 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
+import * as axios from "axios";
+import {URL} from "../../../helpers/constants/fetch";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchInfoAction} from "../../../redux/actions/infoAction";
 
 const Top = () => {
 
-    const topHeaderInfo = ['Криптовалюты', 'Рынки', 'Рыночная капитализация', 'Объем за 24ч', 'Доминирование BTC']
+    const {info} = useSelector(state => state.info)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const fetchInfo = async () => {
+            const result = await axios(
+                `${URL}/global`,
+            );
+
+            dispatch(fetchInfoAction(result.data.data));
+        };
+
+        fetchInfo();
+    }, [dispatch]);
 
     return (
         <Grid container spacing={1}>
             <Grid item xs={12}>
                 <ul className="top-info">
-                    {topHeaderInfo.map(info => <li key={info}>{info}: <span>0</span></li>)}
+                    <li>Монеты: <span>{info.active_cryptocurrencies}</span></li>
+                    <li>Биржевые площадки: <span>{info.markets}</span></li>
                 </ul>
             </Grid>
         </Grid>
