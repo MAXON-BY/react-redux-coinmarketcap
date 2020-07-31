@@ -9,23 +9,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ClearAllIcon from "@material-ui/icons/ClearAll";
 import ListItemText from "@material-ui/core/ListItemText";
-import {makeStyles} from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    list: {
-        width: 300,
-    }
-}));
 
 const sidebarPosition = 'left'
 const navbarNav = ['Криптовалюты', 'Биржи', 'Products', 'Инструменты', 'Learn']
 
 const Sidebar = () => {
-
-    const classes = useStyles();
 
     const [state, setState] = useState({left: false});
 
@@ -47,7 +35,7 @@ const Sidebar = () => {
                         Разделы
                     </ListSubheader>
                 }
-                className={classes.list}
+                className="makeStyles-list"
             >
                 <Divider/>
                 {navbarNav.map((text) => (
@@ -63,10 +51,9 @@ const Sidebar = () => {
     )
 
     return (
-        <div>
+        <div className="menuButton">
             <IconButton
                 edge="start"
-                className={classes.menuButton}
                 color="inherit"
                 aria-label="open drawer"
                 onClick={toggleDrawer(sidebarPosition, true)}
