@@ -1,30 +1,15 @@
 import React from 'react';
 import Header from "./header/Header";
-import CoinPage from "../pages/CoinPage/CoinPage";
 import FooterComp from "./footer/Footer";
-
-import {Switch, Route} from "react-router-dom";
-import CoinItemPage from "../pages/CoinItemPage/CoinItemPage";
-import ExchangesPage from "../pages/ExchangesPage/ExchangesPage";
-import ProductsPage from "../pages/ProductsPage/ProductsPage";
-import ToolsPage from "../pages/ToolsPage/ToolsPage";
-import LearnPage from "../pages/LearnPage/LearnPage";
-import NotFoundPage from "../pages/NotFoundPage/NotFoundPage";
+import {renderRoutes} from "react-router-config";
+import {routes} from "../helpers/constants/routes";
 
 const App = () => {
     return (
         <div className="App">
             <Header/>
 
-            <Switch>
-                <Route path="/" exact component={CoinPage}/>
-                <Route path="/coin:id" exact component={CoinItemPage}/>
-                <Route path="/exchange" exact component={ExchangesPage}/>
-                <Route path="/products" exact component={ProductsPage}/>
-                <Route path="/tools" exact component={ToolsPage}/>
-                <Route path="/learn" exact component={LearnPage}/>
-                <Route path="*" component={NotFoundPage}/>
-            </Switch>
+            {renderRoutes(routes)}
 
             <FooterComp/>
         </div>

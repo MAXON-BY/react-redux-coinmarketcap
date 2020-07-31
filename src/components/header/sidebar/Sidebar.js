@@ -11,7 +11,12 @@ import ClearAllIcon from "@material-ui/icons/ClearAll";
 import ListItemText from "@material-ui/core/ListItemText";
 
 const sidebarPosition = 'left'
-const navbarNav = ['Криптовалюты', 'Биржи', 'Products', 'Инструменты', 'Learn']
+const navbarNav = [
+    'Криптовалюты',
+    'Биржи',
+    'Products',
+    'Инструменты',
+    'Learn']
 
 const Sidebar = () => {
 

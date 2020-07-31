@@ -89,7 +89,7 @@ const CoinPage = () => {
                                 }
                             ) => (
                                 <TableRow key={id}>
-                                    <TableCell component="th" scope="row">{market_cap_rank}</TableCell>
+                                    <TableCell align="center" component="th" scope="row">{market_cap_rank}</TableCell>
                                     <TableCell align="right">
                                         <div className="tableCoinWrap">
                                             <img className="coinLogo" src={image} alt={id}/>
