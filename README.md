@@ -12,6 +12,7 @@ React-redux CoinMarketCap
 - node-sass
 - axios
 - react-router-config
+- react-spinners
 
 Стилистика: Material-UI 
 

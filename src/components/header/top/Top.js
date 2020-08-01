@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import Grid from "@material-ui/core/Grid";
-import * as axios from "axios";
-import {URL} from "../../../helpers/constants/fetch";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchInfoAction} from "../../../redux/actions/infoAction";
+import {congeckoGetGlobalInfo} from "../../../helpers/data/apiCoins";
 
 const Top = () => {
 
@@ -11,15 +10,13 @@ const Top = () => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const fetchInfo = async () => {
-            const result = await axios(
-                `${URL}/global`,
-            );
-
-            dispatch(fetchInfoAction(result.data.data));
-        };
-
-        fetchInfo();
+        congeckoGetGlobalInfo()
+            .then(res =>{
+                dispatch(fetchInfoAction(res.data.data));
+            })
+            .catch(err =>{
+                console.log(err)
+            })
     }, [dispatch]);
 
     return (

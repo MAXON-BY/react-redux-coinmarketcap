@@ -12,10 +12,10 @@ import IconButton from "@material-ui/core/IconButton";
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
 import {useDispatch, useSelector} from "react-redux";
-import * as axios from "axios";
-import {URL, MONEY, PAGE, PER_PAGE, PRICE_TIME, SORT} from "../../helpers/constants/fetch";
 import {fetchCoinAction} from "../../redux/actions/coinAction";
 import TablePag from "../../components/tablePag/TablePag";
+import {congeckoGetCoins} from "../../helpers/data/apiCoins";
+import Spinner from "../../components/spinner/Spinner";
 
 const tableCoin = [
     'Rank',
@@ -29,28 +29,26 @@ const tableCoin = [
 const CoinPage = () => {
 
     const {coins} = useSelector(state => state.coins)
+    const {isLoading} = useSelector(state => state.coins)
+
     const dispatch = useDispatch()
 
     const [expand, setExpand] = useState(true);
 
     useEffect(() => {
-        const fetchCoins = async () => {
-            const result = await axios(
-                `${URL}/coins/markets?vs_currency=${MONEY}&order=${SORT}&per_page=${PER_PAGE}&page=${PAGE}&sparkline=true&price_change_percentage=${PRICE_TIME}`,
-            );
-
-            dispatch(fetchCoinAction(result.data));
-        };
-
-        fetchCoins();
+        congeckoGetCoins()
+            .then(res => {
+                dispatch(fetchCoinAction(res.data));
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }, [dispatch]);
 
     const handleClickExpand = () => {
         setExpand(!expand)
         console.log('сортировка таблицы', expand)
     };
-
-
 
     return (
         <Container maxWidth="lg">
@@ -74,7 +72,9 @@ const CoinPage = () => {
 
                             </TableRow>
                         </TableHead>
+
                         <TableBody>
+
                             {coins.map((
                                 {
                                     id,
@@ -103,6 +103,7 @@ const CoinPage = () => {
                             ))}
                         </TableBody>
                     </Table>
+                    {isLoading && <Spinner/>}
                 </TableContainer>
                 <TablePag/>
             </div>

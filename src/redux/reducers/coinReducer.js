@@ -2,7 +2,7 @@ import {GET_COIN} from "../../helpers/constants/actionsType";
 
 const initialState = {
     coins: [],
-    isLoading: false
+    isLoading: true
 }
 
 const coinsReducer = (state = initialState, action) => {
@@ -10,7 +10,8 @@ const coinsReducer = (state = initialState, action) => {
         case GET_COIN:
             return{
                 ...state,
-                coins: action.coins
+                coins: action.coins,
+                isLoading: false
             }
         default: return state
     }
