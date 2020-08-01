@@ -13,6 +13,7 @@ React-redux CoinMarketCap
 - axios
 - react-router-config
 - react-spinners
+- react-number-format
 
 Стилистика: Material-UI 
 

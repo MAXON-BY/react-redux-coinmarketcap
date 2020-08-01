@@ -8,6 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import TableCell from "@material-ui/core/TableCell";
 import TableBody from "@material-ui/core/TableBody";
 import IconButton from "@material-ui/core/IconButton";
+import NumberFormat from "react-number-format"
 
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
@@ -82,6 +83,7 @@ const CoinPage = () => {
                                     image,
                                     market_cap_rank,
                                     market_cap,
+                                    symbol,
                                     current_price,
                                     circulating_supply,
                                     price_change_percentage_24h
@@ -95,10 +97,36 @@ const CoinPage = () => {
                                             {name}
                                         </div>
                                     </TableCell>
-                                    <TableCell align="right">{market_cap}</TableCell>
-                                    <TableCell align="right">{current_price}</TableCell>
-                                    <TableCell align="right">{circulating_supply}</TableCell>
-                                    <TableCell align="right">{price_change_percentage_24h}%</TableCell>
+                                    <TableCell align="right">
+                                        <NumberFormat
+                                            value={market_cap}
+                                            thousandSeparator={true}
+                                            displayType={'text'}
+                                            suffix ={' $'}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <NumberFormat
+                                            value={current_price}
+                                            thousandSeparator={true}
+                                            displayType={'text'}
+                                            suffix ={' $'}
+                                        />
+                                    </TableCell>
+                                    <TableCell align="right">
+                                        <NumberFormat
+                                            value={circulating_supply}
+                                            thousandSeparator={true}
+                                            displayType={'text'}
+                                        />
+                                        <span className="coinSymbol">{symbol}</span>
+                                    </TableCell>
+                                    <TableCell
+                                        align="right"
+                                        className= {price_change_percentage_24h > 0 ? "textGreen" : "textDanger"}
+                                    >
+                                        {(price_change_percentage_24h).toFixed(1)}%
+                                    </TableCell>
                                 </TableRow>
                             ))}
                         </TableBody>

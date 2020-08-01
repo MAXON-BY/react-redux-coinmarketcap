@@ -2,7 +2,8 @@ import {GET_COIN} from "../../helpers/constants/actionsType";
 
 const initialState = {
     coins: [],
-    isLoading: true
+    isLoading: true,
+    error: ""
 }
 
 const coinsReducer = (state = initialState, action) => {
