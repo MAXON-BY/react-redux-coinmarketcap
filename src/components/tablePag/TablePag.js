@@ -5,7 +5,6 @@ import TablePagination from "@material-ui/core/TablePagination";
 const rowsInPage = [10, 30, 100, { label: 'All', value: -1 }]
 
 const TablePag = () => {
-
     const {coins} = useSelector(state => state.coins)
 
     const [page, setPage] = useState(0);
@@ -20,12 +19,11 @@ const TablePag = () => {
         setPage(0);
     };
 
-
     return (
         <TablePagination
             rowsPerPageOptions={rowsInPage}
             component="div"
-            count={coins.length}
+            count={coins?.length || 0}
             rowsPerPage={rowsPerPage}
             page={page}
             onChangePage={handleChangePage}

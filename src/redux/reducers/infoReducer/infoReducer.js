@@ -1,9 +1,10 @@
-import {GET_INFO} from "../../helpers/constants/actionsType";
+import {GET_INFO} from "../../../helpers/constants/actionsType";
 
 const initialState = {
     info: []
 };
 
+//TODO @MaxNyrkov remade this reducer to createSlice!!!
 const infoReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_INFO:

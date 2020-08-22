@@ -8,9 +8,7 @@ const App = () => {
     return (
         <div className="App">
             <Header/>
-
             {renderRoutes(routes)}
-
             <FooterComp/>
         </div>
     );

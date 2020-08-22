@@ -10,11 +10,11 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ClearAllIcon from "@material-ui/icons/ClearAll";
 import ListItemText from "@material-ui/core/ListItemText";
 import {Link} from "react-router-dom";
-import {EXCHANGE_PAGE, HOME_PAGE, LEARN_PAGE, PRODUCTS_PAGE, TOOLS_PAGE} from "../../../helpers/constants/routes";
+import {EXCHANGE_PAGE, HOME_PAGE, LEARN_PAGE, PRODUCTS_PAGE, TOOLS_PAGE} from "../../../../helpers/constants/routes";
 
 const sidebarPosition = 'left'
 
-export const navbarNav = [
+const navbarNav = [
     {name:'Криптовалюты', link: HOME_PAGE},
     {name:'Биржи', link: EXCHANGE_PAGE},
     {name:'Products', link: PRODUCTS_PAGE},
@@ -34,7 +34,7 @@ const Sidebar = () => {
         setState({...state, [anchor]: open});
     };
 
-    const list = () => (
+    const list = (
         <div role="presentation">
             <List
                 component="nav"
@@ -72,7 +72,7 @@ const Sidebar = () => {
                 <MenuIcon/>
             </IconButton>
             <Drawer open={state[sidebarPosition]} onClose={toggleDrawer(sidebarPosition, false)}>
-                {list()}
+                {list}
             </Drawer>
         </div>
     );

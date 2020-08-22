@@ -11,11 +11,11 @@ const Top = () => {
 
     useEffect(() => {
         congeckoGetGlobalInfo()
-            .then(res =>{
+            .then(res => {
                 dispatch(fetchInfoAction(res.data.data));
             })
-            .catch(err =>{
-                console.log(err)
+            .catch(err => {
+                new Error(err)
             })
     }, [dispatch]);
 

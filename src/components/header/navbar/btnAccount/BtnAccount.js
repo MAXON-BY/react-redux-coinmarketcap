@@ -44,6 +44,7 @@ const BtnAccount = () => {
                 open={open}
                 onClose={handleClose}
             >
+
                 <MenuItem onClick={handleClose}>Log In</MenuItem>
                 <MenuItem onClick={handleClose}>Sign up</MenuItem>
             </Menu>

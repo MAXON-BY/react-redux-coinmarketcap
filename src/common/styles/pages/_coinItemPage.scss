@@ -1,0 +1,71 @@
+.current-coin {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+
+  h1 {
+    margin: 0;
+    margin-left: 10px;
+    font-size: 1.875rem;
+  }
+
+  span {
+    margin-left: auto;
+    font-size: 1.875rem;
+  }
+
+  &-info {
+    max-width: 280px;
+    width: 100%;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #e7e7e7;
+
+    table{
+      width: 100%;
+      border-collapse: collapse;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    table th, table td {
+      font-size: 13px;
+      padding: 0.9rem 0.7rem !important;
+      border-top: 1px solid #dee2e6;
+    }
+
+    table th {
+      text-align: left;
+      padding-right: 0 !important;
+      width: 50%;
+    }
+
+    h4 {
+      font-size: .8rem;
+      padding: 1.5rem .5rem;
+      margin: 0;
+    }
+
+    &-wrap {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &-graphic {
+    width: 100%;
+
+    &-info {
+      padding-right: 20px;
+    }
+  }
+}
+
+.text-danger {
+  color: #dc3545;
+}
+
+.text-green {
+  color: green;
+}
