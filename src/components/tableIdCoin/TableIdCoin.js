@@ -3,9 +3,6 @@ import NumberFormat from "react-number-format";
 import GraphicInfo from "../graphicInfo/GraphicInfo";
 
 const TableIdCoin = ({coin}) => {
-
-    console.log('coins', coin)
-
     return (
         <div>
             <div className="current-coin">
