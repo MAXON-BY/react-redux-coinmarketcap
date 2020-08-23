@@ -3,6 +3,9 @@ import NumberFormat from "react-number-format";
 import GraphicInfo from "../graphicInfo/GraphicInfo";
 
 const TableIdCoin = ({coin}) => {
+
+    console.log('coins', coin)
+
     return (
         <div>
             <div className="current-coin">
@@ -15,7 +18,7 @@ const TableIdCoin = ({coin}) => {
 
             <div className="current-coin-info-wrap">
                 <div className="current-coin-graphic">
-                    <GraphicInfo sparkline_7d={coin.sparkline_7d}/>
+                    <GraphicInfo sparkline_7d={coin.market_data.sparkline_7d.price}/>
                 </div>
 
                 <div className="current-coin-info">

@@ -3,6 +3,8 @@ import {Line} from "react-chartjs-2";
 
 const GraphicInfo = ({sparkline_7d}) => {
 
+    console.log('sparkline_7d', sparkline_7d)
+
     const[options] = useState({
         scales: {
             xAxes: [{
